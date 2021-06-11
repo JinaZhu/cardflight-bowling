@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import Landing from './components/Landing/Landing';
 import Game from './components/Game/Game';
-import Frames from './components/Frames/Frames';
 
 import './App.css';
 

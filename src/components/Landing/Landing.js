@@ -3,6 +3,8 @@ import React from 'react';
 const gameBoard = {
     gameScores: [ [], [], [], [], [], [], [], [], [], [] ],
     position: 0,
+    frameScore: [],
+    strike: false,
 }
 
 const Landing = ({setStartGame}) => {
