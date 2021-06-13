@@ -5,6 +5,8 @@ const gameBoard = {
     position: 0,
     frameScore: [],
     strike: false,
+    spare: false,
+    bonusRolls: 0,
 }
 
 const Landing = ({setStartGame}) => {

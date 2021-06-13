@@ -15,17 +15,7 @@ function tryParse(value){
 }
 
 const Frames = (props) => {
-    const [frameComplete, setFrameComplete] = useState(false)
-
-    const [frameNum, setFrameNum] = useState({})
-
     const [gameBoard, setGameBoard] = useState(tryParse(localStorage.getItem('gameBoard')));
-
-    function updateFrameScores(position){
-        console.log(gameBoard.gameScores[position]);
-        return gameBoard.gameScores[position].reduce((a, b) => a + parseInt(b), 0);
-    }
-
     return(
         <div>
             <ScoreTable>
@@ -42,37 +32,40 @@ const Frames = (props) => {
                     <ScoreTableColumn>8</ScoreTableColumn>
                     <ScoreTableColumn>9</ScoreTableColumn>
                     <ScoreTableColumn>10</ScoreTableColumn>
+                    <ScoreTableColumn>BONUS</ScoreTableColumn>
                     <ScoreTableColumn>TOT</ScoreTableColumn>
                 </tr>
                 <tr>
                     <ScoreTableColumn>User</ScoreTableColumn>
-                    <ScoreTableColumn>{gameBoard.gameScores[0][0]} / {gameBoard.gameScores[0][1]}</ScoreTableColumn>
-                    <ScoreTableColumn></ScoreTableColumn>
-                    <ScoreTableColumn></ScoreTableColumn>
-                    <ScoreTableColumn></ScoreTableColumn>
-                    <ScoreTableColumn></ScoreTableColumn>
-                    <ScoreTableColumn></ScoreTableColumn>
-                    <ScoreTableColumn></ScoreTableColumn>
-                    <ScoreTableColumn></ScoreTableColumn>
-                    <ScoreTableColumn></ScoreTableColumn>
-                    <ScoreTableColumn></ScoreTableColumn>
+                    {console.log('gameBoard.gameScores', gameBoard.gameScores)}
+                    <ScoreTableColumn>{gameBoard.gameScores[0][0]}/{gameBoard.gameScores[0][1]}</ScoreTableColumn>
+                    <ScoreTableColumn>{gameBoard.gameScores[1][0]}/{gameBoard.gameScores[1][1]}</ScoreTableColumn>
+                    <ScoreTableColumn>{gameBoard.gameScores[2][0]}/{gameBoard.gameScores[2][1]}</ScoreTableColumn>
+                    <ScoreTableColumn>{gameBoard.gameScores[3][0]}/{gameBoard.gameScores[3][1]}</ScoreTableColumn>
+                    <ScoreTableColumn>{gameBoard.gameScores[4][0]}/{gameBoard.gameScores[4][1]}</ScoreTableColumn>
+                    <ScoreTableColumn>{gameBoard.gameScores[5][0]}/{gameBoard.gameScores[5][1]}</ScoreTableColumn>
+                    <ScoreTableColumn>{gameBoard.gameScores[6][0]}/{gameBoard.gameScores[6][1]}</ScoreTableColumn>
+                    <ScoreTableColumn>{gameBoard.gameScores[7][0]}/{gameBoard.gameScores[7][1]}</ScoreTableColumn>
+                    <ScoreTableColumn>{gameBoard.gameScores[8][0]}/{gameBoard.gameScores[8][1]}</ScoreTableColumn>
+                    <ScoreTableColumn>{gameBoard.gameScores[9][0]}/{gameBoard.gameScores[9][1]}</ScoreTableColumn>
+
                     <ScoreTableColumn></ScoreTableColumn>
                 </tr>
                 <tr>
                 <th></th>
-                <ScoreTableColumn>{updateFrameScores(1)}</ScoreTableColumn>
-                <ScoreTableColumn></ScoreTableColumn>
-                <ScoreTableColumn></ScoreTableColumn>
-                <ScoreTableColumn></ScoreTableColumn>
-                <ScoreTableColumn></ScoreTableColumn>
-                <ScoreTableColumn></ScoreTableColumn>
-                <ScoreTableColumn></ScoreTableColumn>
-                <ScoreTableColumn></ScoreTableColumn>
-                <ScoreTableColumn></ScoreTableColumn>
-                <ScoreTableColumn></ScoreTableColumn>
+                <ScoreTableColumn>{gameBoard.frameScore[0]}</ScoreTableColumn>
+                <ScoreTableColumn>{gameBoard.frameScore[1]}</ScoreTableColumn>
+                <ScoreTableColumn>{gameBoard.frameScore[2]}</ScoreTableColumn>
+                <ScoreTableColumn>{gameBoard.frameScore[3]}</ScoreTableColumn>
+                <ScoreTableColumn>{gameBoard.frameScore[4]}</ScoreTableColumn>
+                <ScoreTableColumn>{gameBoard.frameScore[5]}</ScoreTableColumn>
+                <ScoreTableColumn>{gameBoard.frameScore[6]}</ScoreTableColumn>
+                <ScoreTableColumn>{gameBoard.frameScore[7]}</ScoreTableColumn>
+                <ScoreTableColumn>{gameBoard.frameScore[8]}</ScoreTableColumn>
+                <ScoreTableColumn>{gameBoard.frameScore[9]}</ScoreTableColumn>
                 </tr>
             </ScoreTable>
-            <Balls/>
+            <Balls setGameBoard={setGameBoard} gameBoard={gameBoard}/>
         </div>
     )
 }

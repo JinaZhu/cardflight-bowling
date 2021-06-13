@@ -1,26 +1,26 @@
 import React, { useState } from 'react';
 
-function tryParse(value){
-    try{
-        return JSON.parse(value);
-    } catch{
-        return value
-    }
-}
-
-const Balls = (props) => {
-    const [gameBoard, setGameBoard] = useState(tryParse(localStorage.getItem('gameBoard')));
+const Balls = ({setGameBoard, gameBoard}) => {
     const [tooHigh, setTooHigh] = useState(false);
 
     function sumScore(currGameScore){
         const score1 = currGameScore.gameScores[currGameScore.position][0];
         const score2 = currGameScore.gameScores[currGameScore.position][1];
-        const frame = [score1, score2];
+        const currFrameRolls = [score1, score2];
+        const prevFrame = currGameScore.gameScores[currGameScore.position - 1];
         const currFrame = currGameScore.frameScore;
-        const totalFrameScore = frame.reduce((acc, score) => {
-            acc += parseInt(score)
+        let totalFrameScore = currFrameRolls.reduce((acc, score) => {
+            acc += parseInt(score);
             return acc
-        }, 0)
+        }, 0);
+        if (totalFrameScore === 10){
+            currGameScore.gameScores[currGameScore.position][0] = 10;
+            currGameScore.gameScores[currGameScore.position][1] = 0;
+            currGameScore.spare = true;            
+        }
+        if (prevFrame){
+            totalFrameScore += currGameScore.frameScore[currGameScore.position - 1];
+        }
         console.log('totalFrameScore', totalFrameScore);
         currFrame.push(totalFrameScore);
         return currGameScore;
@@ -31,14 +31,23 @@ const Balls = (props) => {
         const score2 = currGameScore.gameScores[currGameScore.position][1];
         const prevFrameScore = currGameScore.frameScore[position - 1];
         const newPrevFrameScore = prevFrameScore + score1 + score2;
-        console.log('position', position)
         currGameScore.frameScore[position - 1] = newPrevFrameScore;
+        currGameScore.frameScore[position] = newPrevFrameScore + score1 + score2;
         currGameScore.strike = false;
         return currGameScore;
     }
 
+    function isSpare(position, currGameScore){
+        const score1 = currGameScore.gameScores[currGameScore.position][0];
+        const prevFrameScore = currGameScore.frameScore[position - 1];
+        const newPrevFrameScore = prevFrameScore + score1;
+        currGameScore.frameScore[position - 1] = newPrevFrameScore;
+        currGameScore.spare = false;
+        return currGameScore;
+    }
+
     function updateCurrentScore(){
-        let currGameScore = gameBoard;
+        let currGameScore = {...gameBoard};
         if (currGameScore.gameScores[currGameScore.position][0] === undefined){
             if (ballScore === 10){
                 currGameScore.gameScores[currGameScore.position][0] = 10;
@@ -47,25 +56,25 @@ const Balls = (props) => {
                 currGameScore = sumScore(currGameScore);
             } else{
                 currGameScore.gameScores[currGameScore.position][0] = ballScore;
+                if (currGameScore.spare === true){
+                    currGameScore = isSpare(currGameScore.position, currGameScore);
+                }
             }
         }else{
             const ball1 = parseInt(currGameScore.gameScores[currGameScore.position][0]);
             if ((ball1 + ballScore) > 10){
                 setTooHigh(true);
-                console.log(ball1);
-                console.log(ballScore);
             } else{
                 currGameScore.gameScores[currGameScore.position][1] = ballScore
             }
+            currGameScore = sumScore(currGameScore);
             if (currGameScore.strike === true){
                 currGameScore = isStrike(currGameScore.position, currGameScore);
             }
-            currGameScore = sumScore(currGameScore);
             setGameBoard(currGameScore);
             localStorage.setItem('gameBoard', JSON.stringify(gameBoard));
         }
         if (currGameScore.gameScores[currGameScore.position][1] || currGameScore.gameScores[currGameScore.position][1] === 0){
-            console.log('hello')
             currGameScore.position += 1;
         }
         setGameBoard(currGameScore);
