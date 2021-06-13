@@ -48,8 +48,8 @@ const Frames = (props) => {
                     <ScoreTableColumn>{gameBoard.gameScores[7][0]}/{gameBoard.gameScores[7][1]}</ScoreTableColumn>
                     <ScoreTableColumn>{gameBoard.gameScores[8][0]}/{gameBoard.gameScores[8][1]}</ScoreTableColumn>
                     <ScoreTableColumn>{gameBoard.gameScores[9][0]}/{gameBoard.gameScores[9][1]}</ScoreTableColumn>
-
-                    <ScoreTableColumn></ScoreTableColumn>
+                    <ScoreTableColumn>{gameBoard.gameScores[10][0]}/{gameBoard.gameScores[10][1]}</ScoreTableColumn>
+                    <ScoreTableColumn>{gameBoard.frameScore[10]}</ScoreTableColumn>
                 </tr>
                 <tr>
                 <th></th>
@@ -63,6 +63,7 @@ const Frames = (props) => {
                 <ScoreTableColumn>{gameBoard.frameScore[7]}</ScoreTableColumn>
                 <ScoreTableColumn>{gameBoard.frameScore[8]}</ScoreTableColumn>
                 <ScoreTableColumn>{gameBoard.frameScore[9]}</ScoreTableColumn>
+                <ScoreTableColumn>{gameBoard.frameScore[10]}</ScoreTableColumn>
                 </tr>
             </ScoreTable>
             <Balls setGameBoard={setGameBoard} gameBoard={gameBoard}/>

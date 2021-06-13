@@ -79,6 +79,23 @@ const Balls = ({setGameBoard, gameBoard}) => {
         }
         setGameBoard(currGameScore);
         localStorage.setItem('gameBoard', JSON.stringify(currGameScore));
+
+        if (currGameScore.position === 9){
+            if(currGameScore.strike === true){
+                console.log('position10', currGameScore.gameScores[currGameScore.position][0]);
+                console.log('position10', currGameScore.gameScores[currGameScore.position][1]);
+                currGameScore = isStrike(currGameScore.position, currGameScore);
+                setGameBoard(currGameScore);
+                localStorage.setItem('gameBoard', JSON.stringify(gameBoard));
+                return
+            }
+            if (currGameScore.spare === true){
+                currGameScore = isSpare(currGameScore.position, currGameScore);
+                setGameBoard(currGameScore);
+                localStorage.setItem('gameBoard', JSON.stringify(gameBoard));
+                return
+            }
+        }
     }
 
     // saves default ball score to local storage
