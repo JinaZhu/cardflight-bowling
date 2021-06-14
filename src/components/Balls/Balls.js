@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import {
+    InputBox,
+} from './styled';
 
 const Balls = ({setGameBoard, gameBoard}) => {
     const [tooHigh, setTooHigh] = useState(false);
@@ -108,7 +111,7 @@ const Balls = ({setGameBoard, gameBoard}) => {
 
     return(
         <div>
-            <input value={ballScore} type='number' onChange={onChange} name='score' min='0' max='10'/>
+            <InputBox value={ballScore} type='number' onChange={onChange} name='score' min='0' max='10'/>
             {tooHigh && 
             <p>
                 input too high

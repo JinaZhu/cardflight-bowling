@@ -2,15 +2,17 @@ import { useState } from 'react';
 import Landing from './components/Landing/Landing';
 import Game from './components/Game/Game';
 
-import './App.css';
+import {
+  AppContainer
+} from './styled';
 
 function App() {
   const [startGame, setStartGame] = useState(localStorage.getItem('startGame'));
 
   return (
-    <div className="App">
+    <AppContainer>
       {startGame ? <Game/> : <Landing setStartGame={setStartGame}/> }
-    </div>
+    </AppContainer>
   );
 }
 

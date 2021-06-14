@@ -1,4 +1,7 @@
 import React from 'react';
+import {
+    LandingButton
+} from './styled';
 
 const gameBoard = {
     gameScores: [ [], [], [], [], [], [], [], [], [], [] , [] ],
@@ -16,9 +19,9 @@ const Landing = ({setStartGame}) => {
     }
 
     return(
-        <button onClick={onClick}>
-            start game
-        </button>
+        <LandingButton onClick={onClick}>
+            Let's Start Bowling!
+        </LandingButton>
     )
 }
 
