@@ -21,3 +21,10 @@ export const InputButton = styled.button`
     font-family: W95FA;
     font-size: 20px;
 `;
+
+export const TooHighAlert = styled.p`
+    font-family: W95FA;
+    font-size: 20px;
+    color: white;
+    align-text: center;
+`;

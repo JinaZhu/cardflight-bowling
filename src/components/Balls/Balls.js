@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
+
 import {
     InputContainer,
     InputBox,
     InputButton,
+    TooHighAlert,
 } from './styled';
 
-const Balls = ({setGameBoard, gameBoard}) => {
+const Balls = ({setGameBoard, gameBoard, setStartGame}) => {
     const [tooHigh, setTooHigh] = useState(false);
 
     function sumScore(currGameScore){
@@ -53,6 +55,17 @@ const Balls = ({setGameBoard, gameBoard}) => {
 
     function updateCurrentScore(){
         let currGameScore = {...gameBoard};
+        if (currGameScore.position === 10){
+            currGameScore.position += 1;
+            setGameBoard(currGameScore);
+            localStorage.setItem('gameBoard', JSON.stringify(gameBoard));
+        }
+        if (currGameScore.position === 12){
+            if (currGameScore.gameScores[currGameScore.position - 1]){
+            localStorage.clear();
+            window.location.reload();
+            }
+        }
         if (currGameScore.gameScores[currGameScore.position][0] === undefined){
             if (ballScore === 10){
                 currGameScore.gameScores[currGameScore.position][0] = 10;
@@ -99,6 +112,14 @@ const Balls = ({setGameBoard, gameBoard}) => {
                 localStorage.setItem('gameBoard', JSON.stringify(gameBoard));
                 return
             }
+            if (currGameScore.gameScores[9][0]){
+                if (currGameScore.spare === false){
+                    currGameScore.gameScores[currGameScore.position + 1][0] = 0;
+                    currGameScore.gameScores[currGameScore.position + 1][1] = 0;
+                    setGameBoard(currGameScore);
+                    localStorage.setItem('gameBoard', JSON.stringify(gameBoard));
+                }
+            }
         }
     }
 
@@ -117,9 +138,9 @@ const Balls = ({setGameBoard, gameBoard}) => {
         <InputContainer>
             <InputBox value={ballScore} type='number' onChange={onChange} name='score' min='0' max='10'/>
             {tooHigh && 
-            <p>
+            <TooHighAlert>
                 input too high
-            </p>
+            </TooHighAlert>
             }
             <InputButton onClick={updateCurrentScore}>
                 submit

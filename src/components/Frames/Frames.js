@@ -19,6 +19,7 @@ function tryParse(value){
 
 const Frames = (props) => {
     const [gameBoard, setGameBoard] = useState(tryParse(localStorage.getItem('gameBoard')));
+
     return(
         <div>
             <ScoreTable>
