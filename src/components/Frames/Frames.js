@@ -40,17 +40,17 @@ const Frames = (props) => {
                 <tr>
                     <FrameScore color={'#f39b79'}>User</FrameScore>
                     {console.log('gameBoard.gameScores', gameBoard.gameScores)}
-                    <FrameScore color={'white'}>{gameBoard.gameScores[0][0]}/{gameBoard.gameScores[0][1]}</FrameScore>
-                    <FrameScore color={'white'}>{gameBoard.gameScores[1][0]}/{gameBoard.gameScores[1][1]}</FrameScore>
-                    <FrameScore color={'white'}>{gameBoard.gameScores[2][0]}/{gameBoard.gameScores[2][1]}</FrameScore>
-                    <FrameScore color={'white'}>{gameBoard.gameScores[3][0]}/{gameBoard.gameScores[3][1]}</FrameScore>
-                    <FrameScore color={'white'}>{gameBoard.gameScores[4][0]}/{gameBoard.gameScores[4][1]}</FrameScore>
-                    <FrameScore color={'white'}>{gameBoard.gameScores[5][0]}/{gameBoard.gameScores[5][1]}</FrameScore>
-                    <FrameScore color={'white'}>{gameBoard.gameScores[6][0]}/{gameBoard.gameScores[6][1]}</FrameScore>
-                    <FrameScore color={'white'}>{gameBoard.gameScores[7][0]}/{gameBoard.gameScores[7][1]}</FrameScore>
-                    <FrameScore color={'white'}>{gameBoard.gameScores[8][0]}/{gameBoard.gameScores[8][1]}</FrameScore>
-                    <FrameScore color={'white'}>{gameBoard.gameScores[9][0]}/{gameBoard.gameScores[9][1]}</FrameScore>
-                    <FrameScore color={'white'}>{gameBoard.gameScores[10][0]}/{gameBoard.gameScores[10][1]}</FrameScore>
+                    <FrameScore color={'white'}>{gameBoard.gameScores[0][0]} / {gameBoard.gameScores[0][1]}</FrameScore>
+                    <FrameScore color={'white'}>{gameBoard.gameScores[1][0]} / {gameBoard.gameScores[1][1]}</FrameScore>
+                    <FrameScore color={'white'}>{gameBoard.gameScores[2][0]} / {gameBoard.gameScores[2][1]}</FrameScore>
+                    <FrameScore color={'white'}>{gameBoard.gameScores[3][0]} / {gameBoard.gameScores[3][1]}</FrameScore>
+                    <FrameScore color={'white'}>{gameBoard.gameScores[4][0]} / {gameBoard.gameScores[4][1]}</FrameScore>
+                    <FrameScore color={'white'}>{gameBoard.gameScores[5][0]} / {gameBoard.gameScores[5][1]}</FrameScore>
+                    <FrameScore color={'white'}>{gameBoard.gameScores[6][0]} / {gameBoard.gameScores[6][1]}</FrameScore>
+                    <FrameScore color={'white'}>{gameBoard.gameScores[7][0]} / {gameBoard.gameScores[7][1]}</FrameScore>
+                    <FrameScore color={'white'}>{gameBoard.gameScores[8][0]} / {gameBoard.gameScores[8][1]}</FrameScore>
+                    <FrameScore color={'white'}>{gameBoard.gameScores[9][0]} / {gameBoard.gameScores[9][1]}</FrameScore>
+                    <FrameScore color={'white'}>{gameBoard.gameScores[10][0]} / {gameBoard.gameScores[10][1]}</FrameScore>
                     <FrameScore color={'#2ce3ff'}>{gameBoard.frameScore[10]}</FrameScore>
                 </tr>
                 <tr>

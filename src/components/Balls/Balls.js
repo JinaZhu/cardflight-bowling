@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import {
+    InputContainer,
     InputBox,
+    InputButton,
 } from './styled';
 
 const Balls = ({setGameBoard, gameBoard}) => {
@@ -67,6 +69,7 @@ const Balls = ({setGameBoard, gameBoard}) => {
             const ball1 = parseInt(currGameScore.gameScores[currGameScore.position][0]);
             if ((ball1 + ballScore) > 10){
                 setTooHigh(true);
+                return
             } else{
                 currGameScore.gameScores[currGameScore.position][1] = ballScore
             }
@@ -85,8 +88,6 @@ const Balls = ({setGameBoard, gameBoard}) => {
 
         if (currGameScore.position === 9){
             if(currGameScore.strike === true){
-                console.log('position10', currGameScore.gameScores[currGameScore.position][0]);
-                console.log('position10', currGameScore.gameScores[currGameScore.position][1]);
                 currGameScore = isStrike(currGameScore.position, currGameScore);
                 setGameBoard(currGameScore);
                 localStorage.setItem('gameBoard', JSON.stringify(gameBoard));
@@ -105,22 +106,25 @@ const Balls = ({setGameBoard, gameBoard}) => {
     const [ballScore, setBallScore] = useState("");
     
     const onChange = event => {
+        if(tooHigh === true){
+            event.preventDefault();
+        }
         setTooHigh(false);
         setBallScore(parseInt(event.target.value));
     }
 
     return(
-        <div>
+        <InputContainer>
             <InputBox value={ballScore} type='number' onChange={onChange} name='score' min='0' max='10'/>
             {tooHigh && 
             <p>
                 input too high
             </p>
             }
-            <button onClick={updateCurrentScore}>
+            <InputButton onClick={updateCurrentScore}>
                 submit
-            </button>
-        </div>
+            </InputButton>
+        </InputContainer>
     )
 }
 
