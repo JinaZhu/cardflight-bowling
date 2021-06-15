@@ -55,10 +55,14 @@ const Balls = ({setGameBoard, gameBoard, setStartGame}) => {
 
     function updateCurrentScore(){
         let currGameScore = {...gameBoard};
-        if (currGameScore.position === 10){
-            currGameScore.position += 1;
+        if (currGameScore.gameScores[9][0]){
+            if (currGameScore.spare === false){
+                currGameScore.gameScores[10][0] = 0;
+                currGameScore.gameScores[10][1] = 0;
+            }
             setGameBoard(currGameScore);
             localStorage.setItem('gameBoard', JSON.stringify(gameBoard));
+            currGameScore = sumScore(currGameScore);
         }
         if (currGameScore.position === 12){
             if (currGameScore.gameScores[currGameScore.position - 1]){
@@ -111,14 +115,6 @@ const Balls = ({setGameBoard, gameBoard, setStartGame}) => {
                 setGameBoard(currGameScore);
                 localStorage.setItem('gameBoard', JSON.stringify(gameBoard));
                 return
-            }
-            if (currGameScore.gameScores[9][0]){
-                if (currGameScore.spare === false){
-                    currGameScore.gameScores[currGameScore.position + 1][0] = 0;
-                    currGameScore.gameScores[currGameScore.position + 1][1] = 0;
-                    setGameBoard(currGameScore);
-                    localStorage.setItem('gameBoard', JSON.stringify(gameBoard));
-                }
             }
         }
     }
