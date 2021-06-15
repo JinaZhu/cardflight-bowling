@@ -11,6 +11,7 @@ function App() {
 
   return (
     <AppContainer>
+      {/* if game state isn't set to true, then hide Game component */}
       {startGame ? <Game/> : <Landing setStartGame={setStartGame}/> }
     </AppContainer>
   );

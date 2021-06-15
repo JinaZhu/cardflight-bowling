@@ -18,6 +18,7 @@ function tryParse(value){
 }
 
 const Frames = (props) => {
+    // catches latest version of the gameBoard
     const [gameBoard, setGameBoard] = useState(tryParse(localStorage.getItem('gameBoard')));
 
     return(

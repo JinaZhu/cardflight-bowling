@@ -3,6 +3,7 @@ import {
     LandingButton
 } from './styled';
 
+// object created to save in local storage, works as the 'backend' in the frontend
 const gameBoard = {
     gameScores: [ [], [], [], [], [], [], [], [], [], [] , [] ],
     position: 0,
@@ -12,6 +13,7 @@ const gameBoard = {
 }
 
 const Landing = ({setStartGame}) => {
+    // when user clicks start game button, startGame state changes allowing Game to show and initializes the object
     const onClick = () => {
         localStorage.setItem('startGame', true);
         localStorage.setItem('gameBoard', JSON.stringify(gameBoard));
