@@ -21,6 +21,7 @@ const Landing = ({setStartGame}) => {
     }
 
     return(
+        //on click, game should start
         <LandingButton onClick={onClick}>
             Let's Start Bowling!
         </LandingButton>
